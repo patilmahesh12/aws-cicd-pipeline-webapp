@@ -1,0 +1,57 @@
+name: Python Deployment Demo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Execute Deployment Script
+        env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
+        run: |
+          # We will create a small python script to handle the SSH deploy
+          python deploy.py
+```eof
+
+4.  **Create the `deploy.py` script in your root folder:**
+
+```python:deploy.py
+import paramiko
+import os
+import io
+
+# Get secrets from GitHub Actions environment
+HOST = os.getenv("EC2_HOST")
+USERNAME = os.getenv("EC2_USERNAME")
+PRIVATE_KEY = os.getenv("PRIVATE_KEY")
+
+# Load key
+key = paramiko.RSAKey.from_private_key(io.StringIO(PRIVATE_KEY))
+client = paramiko.SSHClient()
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+# Connect and deploy
+client.connect(hostname=HOST, username=USERNAME, pkey=key)
+client.exec_command("cd /usr/share/nginx/html && git pull origin main && systemctl restart nginx")
+client.close()
+print("Deployment Completed Successfully!")
+```eof
+
+**This approach completely bypasses the AWS "Subscription" error and is much faster to set up.** Shall we proceed with this "GitHub Actions" method instead? It is a very impressive skill to have on your resume.
