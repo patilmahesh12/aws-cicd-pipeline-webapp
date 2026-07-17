@@ -26,32 +26,20 @@ jobs:
           EC2_HOST: ${{ secrets.EC2_HOST }}
           EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
         run: |
-          # We will create a small python script to handle the SSH deploy
           python deploy.py
 ```eof
 
-4.  **Create the `deploy.py` script in your root folder:**
+### Why this might have failed:
+1.  **Indentation:** Ensure that `run:` is indented with exactly 2 or 4 spaces to align with `env:`. If you copy-pasted it and the spaces were converted to tabs, it will crash.
+2.  **Missing Newlines:** In YAML, the `|` symbol (after `run:`) tells GitHub that the following lines are a block of commands. If there isn't a proper newline or indentation for those commands, it throws a syntax error.
 
-```python:deploy.py
-import paramiko
-import os
-import io
-
-# Get secrets from GitHub Actions environment
-HOST = os.getenv("EC2_HOST")
-USERNAME = os.getenv("EC2_USERNAME")
-PRIVATE_KEY = os.getenv("PRIVATE_KEY")
-
-# Load key
-key = paramiko.RSAKey.from_private_key(io.StringIO(PRIVATE_KEY))
-client = paramiko.SSHClient()
-client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-
-# Connect and deploy
-client.connect(hostname=HOST, username=USERNAME, pkey=key)
-client.exec_command("cd /usr/share/nginx/html && git pull origin main && systemctl restart nginx")
-client.close()
-print("Deployment Completed Successfully!")
-```eof
-
-**This approach completely bypasses the AWS "Subscription" error and is much faster to set up.** Shall we proceed with this "GitHub Actions" method instead? It is a very impressive skill to have on your resume.
+### How to fix it:
+1.  Open `.github/workflows/deploy.yml` in your local project folder.
+2.  **Delete everything** inside it.
+3.  **Copy and paste the code block above** into that file. Save it.
+4.  Run these commands to push the fix:
+    
+```bash
+    git add .
+    git commit -m "Fix YAML syntax error"
+    git push origin main
