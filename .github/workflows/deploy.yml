@@ -27,19 +27,3 @@ jobs:
           EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
         run: |
           python deploy.py
-```eof
-
-### Why this might have failed:
-1.  **Indentation:** Ensure that `run:` is indented with exactly 2 or 4 spaces to align with `env:`. If you copy-pasted it and the spaces were converted to tabs, it will crash.
-2.  **Missing Newlines:** In YAML, the `|` symbol (after `run:`) tells GitHub that the following lines are a block of commands. If there isn't a proper newline or indentation for those commands, it throws a syntax error.
-
-### How to fix it:
-1.  Open `.github/workflows/deploy.yml` in your local project folder.
-2.  **Delete everything** inside it.
-3.  **Copy and paste the code block above** into that file. Save it.
-4.  Run these commands to push the fix:
-    
-```bash
-    git add .
-    git commit -m "Fix YAML syntax error"
-    git push origin main
