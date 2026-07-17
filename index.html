@@ -1,11 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Automated Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Engineering Portfolio</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; }
+        .status-badge {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        .section { margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; }
+    </style>
 </head>
 <body>
-    <h1>I am a Cloud Engineer!</h1>
-    <h2>Deployment Successful!</h2>
-    <p>This page was deployed automatically via GitHub Actions.</p>
+
+<div class="container">
+    <div class="status-badge">CI/CD Pipeline: Active & Green ✅</div>
+    
+    <h1>Automated Deployment Successful!</h1>
+    <p>Welcome to my Cloud Engineering project. This website is being served via <strong>Nginx</strong> on an <strong>AWS EC2</strong> instance.</p>
+
+    <div class="section">
+        <h2>About Me</h2>
+        <p>Hi, I'm Mahesh! I am a Cloud Engineer focused on automating infrastructure. This project demonstrates my ability to build CI/CD pipelines that streamline the path from code to production.</p>
+    </div>
+
+    <div class="section">
+        <h2>Project Stack</h2>
+        <ul>
+            <li><strong>Infrastructure:</strong> AWS EC2</li>
+            <li><strong>Automation:</strong> GitHub Actions & Python (Paramiko)</li>
+            <li><strong>Web Server:</strong> Nginx</li>
+            <li><strong>Security:</strong> AWS IAM & Repository Secrets</li>
+        </ul>
+    </div>
+</div>
+
 </body>
 </html>
