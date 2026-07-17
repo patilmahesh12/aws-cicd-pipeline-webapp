@@ -1,0 +1,15 @@
+# AWS Private Keys
+*.pem
+*.key
+*.ppk
+
+# Python cache and environment files
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# Environment variables (just in case you use a local .env file)
+.env
+.DS_Store
