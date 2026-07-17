@@ -3,59 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud Engineering Portfolio</title>
+    <title>Mahesh Patil | AWS Deployment</title>
+
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+        * {
             margin: 0;
-            background-color: #f4f7f6;
-            color: #333;
+            padding: 0;
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e40af);
+            color: #ffffff;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .container {
-            max-width: 800px;
-            margin: 50px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 40px;
         }
-        h1 { color: #2c3e50; }
-        .status-badge {
+
+        .status {
             display: inline-block;
-            background: #27ae60;
+            background: #16a34a;
             color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
             margin-bottom: 20px;
         }
-        .section { margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; }
+
+        h1 {
+            font-size: 38px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .intro {
+            color: #dbe4f3;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 22px;
+            border-radius: 12px;
+        }
+
+        .card h2 {
+            margin-bottom: 15px;
+            color: #93c5fd;
+            font-size: 22px;
+        }
+
+        .card p {
+            color: #e5e7eb;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .tech-list {
+            list-style: none;
+        }
+
+        .tech-list li {
+            margin-bottom: 12px;
+            color: #f1f5f9;
+            font-size: 15px;
+        }
+
+        .tech-list strong {
+            color: #ffffff;
+        }
+
+        .footer {
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 18px;
+            text-align: center;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .footer span {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+
+            body {
+                overflow: auto;
+                height: auto;
+                padding: 20px 0;
+            }
+
+            .container {
+                width: 92%;
+                padding: 25px;
+            }
+
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .intro {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <div class="status-badge">CI/CD Pipeline: Active & Green ✅</div>
-    
-    <h1>Automated Deployment Successful!</h1>
-    <p>Welcome to my Cloud Engineering project. This website is being served via <strong>Nginx</strong> on an <strong>AWS EC2</strong> instance.</p>
+    <div class="container">
 
-    <div class="section">
-        <h2>About Me</h2>
-        <p>Hi, I'm Mahesh! I am a Cloud Engineer focused on automating infrastructure. This project demonstrates my ability to build CI/CD pipelines that streamline the path from code to production.</p>
-    </div>
+        <div class="status">
+            Deployment Status: Live
+        </div>
 
-    <div class="section">
-        <h2>Project Stack</h2>
-        <ul>
-            <li><strong>Infrastructure:</strong> AWS EC2</li>
-            <li><strong>Automation:</strong> GitHub Actions & Python (Paramiko)</li>
-            <li><strong>Web Server:</strong> Nginx</li>
-            <li><strong>Security:</strong> AWS IAM & Repository Secrets</li>
-        </ul>
+        <h1>AWS Cloud Deployment</h1>
+
+        <p class="intro">
+            This website demonstrates a basic cloud deployment hosted on an AWS EC2 instance using Nginx.
+            The deployment process is automated with GitHub Actions, allowing code changes to be securely
+            delivered from the repository to the server with minimal manual effort.
+        </p>
+
+        <div class="content">
+
+            <div class="card">
+                <h2>Project Overview</h2>
+
+                <p>
+                    The objective of this project is to understand the fundamentals of cloud hosting,
+                    automated deployments, and server configuration. It follows a simple CI/CD workflow
+                    where every successful code update is deployed to the EC2 instance through a secure
+                    automation process.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2>Technology Stack</h2>
+
+                <ul class="tech-list">
+                    <li><strong>Cloud Platform:</strong> AWS EC2</li>
+                    <li><strong>Web Server:</strong> Nginx</li>
+                    <li><strong>Automation:</strong> GitHub Actions</li>
+                    <li><strong>Deployment Script:</strong> Python (Paramiko)</li>
+                    <li><strong>Authentication:</strong> IAM & SSH Keys</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+            Developed by <span>Mahesh Patil</span>
+        </div>
+
     </div>
-</div>
 
 </body>
 </html>
